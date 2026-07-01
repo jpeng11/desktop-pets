@@ -1,0 +1,33 @@
+{
+  "name": "nuphy-line-dog-desktop-pet",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Independent NUPHY desktop pet using native GIF playback.",
+  "main": "main.js",
+  "files": [
+    "assets/**/*",
+    "index.html",
+    "main.js",
+    "pet.js",
+    "preload.js",
+    "styles.css"
+  ],
+  "scripts": {
+    "start": "electron .",
+    "task-complete": "electron . --task-complete"
+  },
+  "build": {
+    "files": [
+      "assets/**/*",
+      "index.html",
+      "main.js",
+      "pet.js",
+      "preload.js",
+      "styles.css",
+      "package.json"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^42.4.1"
+  }
+}

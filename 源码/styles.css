@@ -1,0 +1,125 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+  user-select: none;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  font-family: Arial, sans-serif;
+}
+
+#pet-shell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  --pet-width: 180px;
+  --pet-height: 180px;
+  background: transparent;
+}
+
+#pet-hit-area {
+  position: relative;
+  display: grid;
+  width: 90px;
+  height: 90px;
+  place-items: center;
+  border: 4px solid transparent;
+  border-radius: 4px;
+  background: rgba(200, 200, 200, 0.01);
+  overflow: visible;
+  cursor: grab;
+}
+
+#pet-hit-area:active {
+  cursor: grabbing;
+}
+
+#pet {
+  display: block;
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  -webkit-user-drag: none;
+  pointer-events: auto;
+  user-select: none;
+}
+
+#close-tip {
+  position: absolute;
+  z-index: 4;
+  min-width: 82px;
+  padding: 7px 10px;
+  border: 1px solid rgba(18, 18, 18, 0.18);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  color: #181818;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+#close-tip[hidden] {
+  display: none;
+}
+
+#close-tip:hover {
+  background: #f2f2f2;
+}
+
+#controls {
+  position: absolute;
+  bottom: calc((100% - var(--pet-height)) / 2 - -10px);
+  right: calc((100% - var(--pet-width)) / 2 - -20px);
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease;
+  z-index: 2;
+}
+
+#pet-hit-area:hover #controls,
+#pet-hit-area:focus-within #controls,
+#controls.is-scaling {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+#controls.is-hidden-after-scale {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+}
+
+.scale-button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  padding: 0;
+  background: rgba(22, 20, 28, 0.96) url("../旋钮.png") center / cover no-repeat;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.32);
+  color: #ffffff;
+  cursor: nwse-resize;
+  touch-action: none;
+}
+
+.scale-button:active {
+  background: rgba(12, 11, 16, 0.98) url("../旋钮.png") center / cover no-repeat;
+}
