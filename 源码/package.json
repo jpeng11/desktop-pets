@@ -1,8 +1,9 @@
 {
   "name": "nuphy-line-dog-desktop-pet",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "private": true,
   "description": "Independent NUPHY desktop pet using native GIF playback.",
+  "author": "remake1026",
   "main": "main.js",
   "files": [
     "assets/**/*",
@@ -14,9 +15,18 @@
   ],
   "scripts": {
     "start": "electron .",
-    "task-complete": "electron . --task-complete"
+    "task-complete": "electron . --task-complete",
+    "dist:win": "electron-builder --win nsis --x64 --ia32 --publish never"
   },
   "build": {
+    "appId": "io.github.remake1026.desktop-pets",
+    "productName": "线条小狗",
+    "directories": {
+      "output": "../dist/standard",
+      "buildResources": "installer-resources"
+    },
+    "asar": true,
+    "npmRebuild": false,
     "files": [
       "assets/**/*",
       "index.html",
@@ -25,9 +35,35 @@
       "preload.js",
       "styles.css",
       "package.json"
-    ]
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "installer-resources/icon.ico",
+      "executableName": "线条小狗",
+      "artifactName": "LineDog-${version}-Win10-11-Setup.${ext}",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "include": "installer-resources/standard.nsh",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "allowElevation": true,
+      "selectPerMachineByDefault": false,
+      "installerLanguages": [
+        "zh_CN"
+      ],
+      "language": "2052",
+      "createDesktopShortcut": false,
+      "createStartMenuShortcut": true,
+      "shortcutName": "线条小狗",
+      "uninstallDisplayName": "线条小狗",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false
+    }
   },
   "devDependencies": {
-    "electron": "^42.4.1"
+    "electron": "42.4.1",
+    "electron-builder": "26.15.3"
   }
 }

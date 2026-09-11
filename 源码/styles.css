@@ -113,7 +113,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 6px;
   padding: 0;
-  background: rgba(22, 20, 28, 0.96) url("../旋钮.png") center / cover no-repeat;
+  background: rgba(22, 20, 28, 0.96) url("assets/scale-handle.png") center / cover no-repeat;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.32);
   color: #ffffff;
   cursor: nwse-resize;
@@ -121,5 +121,5 @@ body {
 }
 
 .scale-button:active {
-  background: rgba(12, 11, 16, 0.98) url("../旋钮.png") center / cover no-repeat;
+  background: rgba(12, 11, 16, 0.98) url("assets/scale-handle.png") center / cover no-repeat;
 }
