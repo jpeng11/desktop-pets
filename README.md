@@ -4,7 +4,7 @@
 
 ![秋日桌面预览](docs/images/readme-autumn.png)
 
-一个基于 Electron 的桌面萌宠应用。线条小狗会悬浮在桌面上，可以拖拽移动、点击互动、调整大小，并支持通过命令触发任务完成动画。
+一个基于 Electron 的桌面萌宠应用。小狗会悬浮在桌面上，可以拖拽移动、点击互动、调整大小，并支持通过命令触发任务完成动画。
 
 **[下载 Windows 10 / 11 安装包（v1.0.3）](https://github.com/remake1026/desktop-pets/releases/download/v1.0.3/LineDog-1.0.3-Win10-11-Setup.exe)** · [版本说明](https://github.com/remake1026/desktop-pets/releases/tag/v1.0.3)
 
