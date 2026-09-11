@@ -1,8 +1,8 @@
-# 线条小狗桌面萌宠
+# 电脑桌面萌宠
 
-![线条小狗桌面萌宠预览](docs/images/readme-hero.png)
+![桌面萌宠预览](docs/images/readme-hero.png)
 
-![线条小狗秋日桌面预览](docs/images/readme-autumn.png)
+![秋日桌面预览](docs/images/readme-autumn.png)
 
 一个基于 Electron 的桌面萌宠应用。线条小狗会悬浮在桌面上，可以拖拽移动、点击互动、调整大小，并支持通过命令触发任务完成动画。
 
