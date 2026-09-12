@@ -8,13 +8,6 @@
 
 **[下载 Windows 10 / 11 安装包（v1.0.3）](https://github.com/remake1026/desktop-pets/releases/download/v1.0.3/LineDog-1.0.3-Win10-11-Setup.exe)** · [版本说明](https://github.com/remake1026/desktop-pets/releases/tag/v1.0.3)
 
-macOS（Apple Silicon）推荐用 Homebrew 安装：
-
-```bash
-brew tap remake1026/desktop-pets https://github.com/remake1026/desktop-pets
-brew install --cask line-dog
-```
-
 ## 互动展示
 
 从安静陪伴到鼠标互动，看看小狗的四种日常状态。
@@ -51,7 +44,7 @@ brew install --cask line-dog
 
 ### 使用 Windows 安装包（无需安装 Node.js）
 
-当前公开发布的 Windows 安装包面向 Windows 10 / 11，已包含运行环境，无需安装 Node.js，安装时也无需联网下载依赖。macOS 请用 Homebrew，或看下一节的 DMG 安装。
+当前仅提供 Windows 10 / 11 安装包，已包含运行环境，无需安装 Node.js，安装时也无需联网下载依赖。
 
 | 安装包 | 目标系统 | 架构 |
 | --- | --- | --- |
@@ -72,21 +65,26 @@ brew install --cask line-dog
 
 当前已在 Windows 10 上进行程序运行测试，Windows 11 尚未完成实机验证；暂不提供其他 Windows 版本或原生 ARM64 安装包。安装包尚未进行代码签名，Windows 可能显示“未知发布者”。
 
-### 使用 Homebrew 安装（macOS Apple Silicon，推荐）
+### 使用 macOS 安装包（Apple Silicon，无需安装 Node.js）
 
-适合已经安装 [Homebrew](https://brew.sh) 的 Mac 用户。安装包已包含运行环境，无需再装 Node.js。
+当前提供 Apple Silicon 的 macOS 安装包，已包含运行环境，无需安装 Node.js，也无需联网下载依赖。推荐用 [Homebrew](https://brew.sh) 安装。
 
-1. 打开「终端」，执行：
+| 安装包 | 目标系统 | 架构 |
+| --- | --- | --- |
+| Homebrew Cask `line-dog`，或 [下载 v1.1.0 DMG](https://github.com/remake1026/desktop-pets/releases/download/v1.1.0/LineDog-1.1.0-Mac-arm64.dmg)（约 113 MB） | macOS Ventura 13 或更新 | Apple Silicon（arm64） |
+
+1. 已安装 Homebrew 时，打开「终端」执行：
 
 ```bash
 brew tap remake1026/desktop-pets https://github.com/remake1026/desktop-pets
 brew install --cask line-dog
 ```
 
-本仓库名是 `desktop-pets`，不是 Homebrew 默认的 `homebrew-desktop-pets`，所以 tap 时要写完整 GitHub 地址。Homebrew 会下载 `LineDog-1.1.0-Mac-arm64.dmg`，并把 **线条小狗** 装到「应用程序」。
+本仓库名是 `desktop-pets`，不是 Homebrew 默认的 `homebrew-desktop-pets`，所以 tap 时要写完整 GitHub 地址。
 
-2. 打开「访达 → 应用程序」，双击 **线条小狗**。小狗会出现在桌面右下角附近，菜单栏右侧会出现图标。
-3. 如果系统提示“无法打开，因为无法验证开发者”：按住 Control 再点击应用，选择“打开”，或在终端执行：
+2. 没有 Homebrew 时，下载 `LineDog-1.1.0-Mac-arm64.dmg`，双击后将 **线条小狗** 拖到 **Applications**。
+3. 打开「访达 → 应用程序」，双击 **线条小狗**。小狗会出现在桌面右下角附近，菜单栏右侧会出现图标。
+4. 如果系统提示“无法打开，因为无法验证开发者”：按住 Control 再点击应用，选择“打开”，或在终端执行：
 
 ```bash
 xattr -cr /Applications/线条小狗.app
@@ -94,30 +92,11 @@ xattr -cr /Applications/线条小狗.app
 
 然后再打开一次。当前 Mac 包使用 ad-hoc 签名，尚未进行 Apple 公证，所以会有这层提示。
 
-以后升级：
-
-```bash
-brew upgrade --cask line-dog
-```
-
-卸载：
-
-```bash
-brew uninstall --cask line-dog
-```
-
-- 仅支持 Apple Silicon（arm64），需要 macOS Ventura 13 或更新版本。
 - 菜单栏图标可以勾选 **登录时启动**，也可以 **退出**。
 - 右键点击小狗仍可显示“关闭萌宠”。
 - 透明区域会把鼠标点击交给下面的桌面或窗口，不会挡住操作。
-
-如果还没有 Homebrew，可先到 [https://brew.sh](https://brew.sh) 按官方说明安装，或改用下面的 DMG 安装包。
-
-### 使用 macOS 安装包（Apple Silicon）
-
-不想用 Homebrew 时，可以下载 `LineDog-1.1.0-Mac-arm64.dmg`，双击后将 **线条小狗** 拖到 **Applications**，再按上一节第 2、3 步打开。
-
-当前 Mac 包面向 Apple Silicon（arm64）。Intel Mac 需要在对应机器上自行构建，或后续再提供 x64 / Universal 包。
+- 仅支持 Apple Silicon（arm64）。Intel Mac 需要在对应机器上自行构建，或后续再提供 x64 / Universal 包。
+- Homebrew 升级：`brew upgrade --cask line-dog`。卸载：`brew uninstall --cask line-dog`，或把「应用程序」里的「线条小狗」移到废纸篓。
 
 ### 源码运行方式一：启动脚本
 
