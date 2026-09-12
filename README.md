@@ -8,6 +8,12 @@
 
 **[下载 Windows 10 / 11 安装包（v1.0.3）](https://github.com/remake1026/desktop-pets/releases/download/v1.0.3/LineDog-1.0.3-Win10-11-Setup.exe)** · [版本说明](https://github.com/remake1026/desktop-pets/releases/tag/v1.0.3)
 
+macOS（Apple Silicon）推荐用 Homebrew 安装：
+
+```bash
+brew install --cask jpeng11/desktop-pets/line-dog
+```
+
 ## 互动展示
 
 从安静陪伴到鼠标互动，看看小狗的四种日常状态。
@@ -26,8 +32,9 @@
 - 缩放调节：悬停后拖动右下角旋钮调整大小
 - 快捷关闭：右键呼出关闭按钮
 - 单实例运行：重复启动时复用已有窗口
-- 开机自启动：安装时可选择登录 Windows 后自动启动
+- 开机自启动：Windows 安装时可选择登录后自动启动；macOS 可在菜单栏图标中勾选“登录时启动”
 - 任务完成反馈：使用启动参数播放庆祝动画
+- macOS 适配：透明置顶、点击穿透空白区域、菜单栏退出、不占用程序坞
 
 ## 技术栈
 
@@ -43,7 +50,7 @@
 
 ### 使用 Windows 安装包（无需安装 Node.js）
 
-当前仅提供 Windows 10 / 11 安装包，已包含运行环境，无需安装 Node.js，安装时也无需联网下载依赖。
+当前公开发布的 Windows 安装包面向 Windows 10 / 11，已包含运行环境，无需安装 Node.js，安装时也无需联网下载依赖。macOS 请用 Homebrew，或看下一节的 DMG 安装。
 
 | 安装包 | 目标系统 | 架构 |
 | --- | --- | --- |
@@ -64,14 +71,59 @@
 
 当前已在 Windows 10 上进行程序运行测试，Windows 11 尚未完成实机验证；暂不提供其他 Windows 版本或原生 ARM64 安装包。安装包尚未进行代码签名，Windows 可能显示“未知发布者”。
 
+### 使用 Homebrew 安装（macOS Apple Silicon，推荐）
+
+适合已经安装 [Homebrew](https://brew.sh) 的 Mac 用户。安装包已包含运行环境，无需再装 Node.js。
+
+1. 打开「终端」，执行：
+
+```bash
+brew install --cask jpeng11/desktop-pets/line-dog
+```
+
+2. Homebrew 会自动添加 tap，下载 `LineDog-1.1.0-Mac-arm64.dmg`，并把 **线条小狗** 装到「应用程序」。
+3. 打开「访达 → 应用程序」，双击 **线条小狗**。小狗会出现在桌面右下角附近，菜单栏右侧会出现图标。
+4. 如果系统提示“无法打开，因为无法验证开发者”：按住 Control 再点击应用，选择“打开”，或在终端执行：
+
+```bash
+xattr -cr /Applications/线条小狗.app
+```
+
+然后再打开一次。当前 Mac 包使用 ad-hoc 签名，尚未进行 Apple 公证，所以会有这层提示。
+
+以后升级：
+
+```bash
+brew upgrade --cask line-dog
+```
+
+卸载：
+
+```bash
+brew uninstall --cask line-dog
+```
+
+- 仅支持 Apple Silicon（arm64），需要 macOS Ventura 13 或更新版本。
+- 菜单栏图标可以勾选 **登录时启动**，也可以 **退出**。
+- 右键点击小狗仍可显示“关闭萌宠”。
+- 透明区域会把鼠标点击交给下面的桌面或窗口，不会挡住操作。
+
+如果还没有 Homebrew，可先到 [https://brew.sh](https://brew.sh) 按官方说明安装，或改用下面的 DMG 安装包。
+
+### 使用 macOS 安装包（Apple Silicon）
+
+不想用 Homebrew 时，可以下载 `LineDog-1.1.0-Mac-arm64.dmg`，双击后将 **线条小狗** 拖到 **Applications**，再按上一节第 3、4 步打开。
+
+当前 Mac 包面向 Apple Silicon（arm64）。Intel Mac 需要在对应机器上自行构建，或后续再提供 x64 / Universal 包。
+
 ### 源码运行方式一：启动脚本
 
 下面的方式适合需要从源码运行的用户，需先安装 Node.js；使用上面的安装包可以跳过本节。
 
 1. 下载或克隆本项目到电脑本地。
 2. 确认电脑已经安装 Node.js。
-3. 双击项目根目录下的 `启动桌宠.cmd`。
-4. 第一次运行时，脚本会自动安装依赖，等待命令窗口安装完成即可。
+3. Windows 双击项目根目录下的 `启动桌宠.cmd`；macOS 双击 `启动桌宠.command`（若系统询问，选择“打开”）。
+4. 第一次运行时，脚本会自动安装依赖，等待安装完成即可。
 5. 安装完成后，线条小狗会自动出现在桌面右下角附近。
 
 如果双击后窗口一闪而过，通常是没有安装 Node.js，或者 npm 命令不可用。请先安装 Node.js，然后重新打开脚本。
@@ -88,15 +140,21 @@
 cd 源码
 ```
 
+macOS 终端：
+
+```bash
+cd 源码
+```
+
 4. 安装依赖：
 
-```powershell
+```bash
 npm install
 ```
 
 5. 启动桌宠：
 
-```powershell
+```bash
 npm start
 ```
 
@@ -110,8 +168,14 @@ npm start
 
 如果是从源码运行，可以在 `源码` 目录执行：
 
-```powershell
+```bash
 npm run task-complete
+```
+
+macOS 安装版可以执行：
+
+```bash
+"/Applications/线条小狗.app/Contents/MacOS/线条小狗" --task-complete
 ```
 
 桌宠会播放任务完成反馈动画。
@@ -124,8 +188,8 @@ npm run task-complete
 - 按住小狗拖动：移动桌宠位置
 - 鼠标移到小狗附近：右下角会出现缩放旋钮，拖动可调整大小
 - 鼠标右键点击小狗：显示关闭按钮
-- 开机自动启动：安装时勾选后，登录 Windows 即可自动启动；需要修改时可重新运行安装包，在“安装选项”页调整
-- 卸载：在 Windows 的应用列表中卸载“线条小狗”，或运行安装目录中的“卸载线条小狗.exe”；卸载会清理该安装对应的自启动项
+- 开机自动启动：Windows 安装时勾选后，登录即可自动启动；需要修改时可重新运行安装包，在“安装选项”页调整。macOS 点击菜单栏图标，勾选或取消“登录时启动”
+- 卸载：在 Windows 的应用列表中卸载“线条小狗”，或运行安装目录中的“卸载线条小狗.exe”；卸载会清理该安装对应的自启动项。macOS 把应用程序里的“线条小狗”移到废纸篓即可；若开启过登录启动，先在菜单栏取消勾选
 
 ## 常见问题
 
@@ -148,18 +212,26 @@ npm run task-complete
 可以尝试：
 
 - 查看任务栏或后台是否已经运行了一个实例
-- 重新双击 `启动桌宠.cmd`
+- macOS 可重新双击「应用程序」里的线条小狗，或再执行一次 `brew reinstall --cask line-dog`
+- 重新双击 `启动桌宠.cmd` 或 `启动桌宠.command`
 - 在 `源码` 目录运行 `npm start`，查看命令行是否有报错
 
 ### 怎么关闭桌宠
 
-右键点击小狗，出现关闭按钮后点击即可关闭。
+右键点击小狗，出现关闭按钮后点击即可关闭。macOS 也可以点击菜单栏右侧的小狗图标，选择“退出”。
+
+### macOS 提示无法验证开发者
+
+Mac 包尚未 Apple 公证。按住 Control 再点击应用选择“打开”，或执行 `xattr -cr /Applications/线条小狗.app` 后再启动。
 
 ## 目录结构
 
 ```text
 .
 ├── 启动桌宠.cmd
+├── 启动桌宠.command
+├── Casks/
+│   └── line-dog.rb
 ├── heart.gif
 ├── jump.gif
 ├── sleep.gif
@@ -195,6 +267,19 @@ npm run dist:win
 安装包输出到项目根目录的 `dist/standard/`，包含 32 位和 64 位程序，安装器按系统架构自动选择。
 
 安装器使用 NSIS 中文向导和微软雅黑 UI 字体，启用高 DPI 支持、自选安装目录、桌面快捷方式、开始菜单入口和卸载功能。试用安装包尚未进行代码签名。
+
+### 构建 macOS 安装包
+
+在 Apple Silicon Mac 的 `源码` 目录中执行：
+
+```bash
+npm ci
+npm run dist:mac
+```
+
+产物输出到项目根目录的 `dist/standard/`，包括 `线条小狗.app`、`LineDog-1.1.0-Mac-arm64.dmg` 和对应 zip。构建机上会做 ad-hoc 签名，便于本地打开；分发给其他人时 macOS 仍可能提示未验证开发者。
+
+发布新的 Mac 包后，请更新 `Casks/line-dog.rb` 中的 `version` 与 `sha256`，并同步 [jpeng11/homebrew-desktop-pets](https://github.com/jpeng11/homebrew-desktop-pets) tap，这样 `brew upgrade --cask line-dog` 才能拿到新版本。
 
 ### 源码结构
 
