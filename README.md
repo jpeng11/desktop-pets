@@ -11,7 +11,8 @@
 macOS（Apple Silicon）推荐用 Homebrew 安装：
 
 ```bash
-brew install --cask jpeng11/desktop-pets/line-dog
+brew tap remake1026/desktop-pets https://github.com/remake1026/desktop-pets
+brew install --cask line-dog
 ```
 
 ## 互动展示
@@ -78,12 +79,14 @@ brew install --cask jpeng11/desktop-pets/line-dog
 1. 打开「终端」，执行：
 
 ```bash
-brew install --cask jpeng11/desktop-pets/line-dog
+brew tap remake1026/desktop-pets https://github.com/remake1026/desktop-pets
+brew install --cask line-dog
 ```
 
-2. Homebrew 会自动添加 tap，下载 `LineDog-1.1.0-Mac-arm64.dmg`，并把 **线条小狗** 装到「应用程序」。
-3. 打开「访达 → 应用程序」，双击 **线条小狗**。小狗会出现在桌面右下角附近，菜单栏右侧会出现图标。
-4. 如果系统提示“无法打开，因为无法验证开发者”：按住 Control 再点击应用，选择“打开”，或在终端执行：
+本仓库名是 `desktop-pets`，不是 Homebrew 默认的 `homebrew-desktop-pets`，所以 tap 时要写完整 GitHub 地址。Homebrew 会下载 `LineDog-1.1.0-Mac-arm64.dmg`，并把 **线条小狗** 装到「应用程序」。
+
+2. 打开「访达 → 应用程序」，双击 **线条小狗**。小狗会出现在桌面右下角附近，菜单栏右侧会出现图标。
+3. 如果系统提示“无法打开，因为无法验证开发者”：按住 Control 再点击应用，选择“打开”，或在终端执行：
 
 ```bash
 xattr -cr /Applications/线条小狗.app
@@ -112,7 +115,7 @@ brew uninstall --cask line-dog
 
 ### 使用 macOS 安装包（Apple Silicon）
 
-不想用 Homebrew 时，可以下载 `LineDog-1.1.0-Mac-arm64.dmg`，双击后将 **线条小狗** 拖到 **Applications**，再按上一节第 3、4 步打开。
+不想用 Homebrew 时，可以下载 `LineDog-1.1.0-Mac-arm64.dmg`，双击后将 **线条小狗** 拖到 **Applications**，再按上一节第 2、3 步打开。
 
 当前 Mac 包面向 Apple Silicon（arm64）。Intel Mac 需要在对应机器上自行构建，或后续再提供 x64 / Universal 包。
 
@@ -279,7 +282,15 @@ npm run dist:mac
 
 产物输出到项目根目录的 `dist/standard/`，包括 `线条小狗.app`、`LineDog-1.1.0-Mac-arm64.dmg` 和对应 zip。构建机上会做 ad-hoc 签名，便于本地打开；分发给其他人时 macOS 仍可能提示未验证开发者。
 
-发布新的 Mac 包后，请更新 `Casks/line-dog.rb` 中的 `version` 与 `sha256`，并同步 [jpeng11/homebrew-desktop-pets](https://github.com/jpeng11/homebrew-desktop-pets) tap，这样 `brew upgrade --cask line-dog` 才能拿到新版本。
+发布新的 Mac 包后，请把它挂到本仓库对应的 GitHub Release，并更新 `Casks/line-dog.rb` 中的 `version` 与 `sha256`，这样 `brew upgrade --cask line-dog` 才能拿到新版本。
+
+本仓库可以直接当作 Homebrew tap 使用。`brew tap remake1026/desktop-pets` 默认会去找 `remake1026/homebrew-desktop-pets`，所以必须带上完整地址：
+
+```bash
+brew tap remake1026/desktop-pets https://github.com/remake1026/desktop-pets
+```
+
+如果之后单独建了名为 `homebrew-desktop-pets` 的仓库，就可以写成 `brew install --cask remake1026/desktop-pets/line-dog`。
 
 ### 源码结构
 

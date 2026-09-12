@@ -2,14 +2,14 @@ cask "line-dog" do
   version "1.1.0"
   sha256 "65400af5229c8bd2cc85633735f6631dc92df73bb8eff47fc77db0e6e47fce01"
 
-  url "https://github.com/jpeng11/desktop-pets/releases/download/v#{version}/LineDog-#{version}-Mac-arm64.dmg",
-      verified: "github.com/jpeng11/desktop-pets/"
+  url "https://github.com/remake1026/desktop-pets/releases/download/v#{version}/LineDog-#{version}-Mac-arm64.dmg",
+      verified: "github.com/remake1026/desktop-pets/"
   name "线条小狗"
   desc "Desktop pet that floats on the screen"
   homepage "https://github.com/remake1026/desktop-pets"
 
   livecheck do
-    url "https://github.com/jpeng11/desktop-pets/releases/latest"
+    url :homepage
     strategy :github_latest
   end
 
